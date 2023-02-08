@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <MainLayout>
+        <ButtonsContainer />
+        <ListLayout>
+            <ShowsList />
+        </ListLayout>
+        <ShowPageModal v-if="state.showPage" />
+    </MainLayout>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import ShowsList from './components/ShowsList.vue'
+import MainLayout from './layouts/MainLayout.vue';
+import ListLayout from './layouts/ListLayout.vue';
+import ButtonsContainer from './components/ButtonsContainer.vue';
+import ShowPageModal from './components/ShowPageModal.vue'
+
+import store from './store'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    name: 'App',
+    components: {
+        ShowsList,
+        MainLayout,
+        ButtonsContainer,
+        ListLayout, 
+        ShowPageModal,
+    },
+    setup() {
+        const state = store.state; 
+
+        return {
+            state,
+        }
+    }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
